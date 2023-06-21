@@ -18,7 +18,7 @@ const ContactForm = () => {
     if (name === 'number') {
       if (value && !/^[0-9\s()+-]+$/.test(value)) {
         alert(
-          'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +'
+          'Номер телефону повинен містити лише цифри та може містити пробіли, тире, дужки і може починатись з +'
         );
         return;
       }
@@ -34,13 +34,17 @@ const ContactForm = () => {
     if (name === 'name') {
       if (value && !/^[a-zA-Zа-яА-Я\s'-]+$/.test(value)) {
         alert(
-          "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          "Ім'я може містити лише літери, апостроф, тире та пробіли. Наприклад, Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         );
         return;
       }
 
       if (
-        contacts.some(contact => contact.name.toLowerCase() === normalizedValue)
+        contacts.some(
+          contact =>
+            contact.name.toLowerCase() === normalizedValue &&
+            contact.name.toLowerCase() !== normalizedValue
+        )
       ) {
         alert(`${value} вже є у списку контактів`);
         return;
